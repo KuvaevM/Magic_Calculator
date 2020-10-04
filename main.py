@@ -3,6 +3,7 @@ class Calculator:
         self.__dict__['storage'] = {}
         self.atributes_number = init_atributes_number
         self.value = init_value
+        self.counter = 0
 
     def __del__(self):
         print('ghjk')
@@ -49,15 +50,28 @@ class Calculator:
         return new_calculator
 
     def __setattr__(self, key, value):
-        if key == 'atributes_number':
+        if key in self.storage:
             self.storage[key] = value
-        elif len(self.storage) < self.atributes_number + 2:
+        elif key == 'atributes_number':
+            self.storage[key] = value
+        elif len(self.storage) < self.atributes_number + 3:
             self.storage[key] = value
         else:
             raise AttributeError
 
     def __getattr__(self, item):
         return self.storage[item]
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.counter<len(self.storage):
+            self.counter = self.counter + 1
+            return self.value
+        else:
+            self.counter = 0
+            raise StopIteration
 
 
 if __name__ == '__main__':
@@ -66,4 +80,7 @@ if __name__ == '__main__':
     calculator.some_atribute2 = 'znachenie'
     calculator.some_atribute3 = 'znachenie'
     print(calculator + 7)
+    for i in calculator:
+        print(i)
+    print(calculator.counter)
     print(calculator)
