@@ -58,7 +58,7 @@ class Calculator:
         """Работа с полями класса"""
         if key in self.storage:
             self.storage[key] = value
-        elif key == 'atributes_number':
+        elif key == 'attributes_number':
             self.storage[key] = value
         elif len(self.storage) < self.attributes_number + 3:
             self.storage[key] = value
