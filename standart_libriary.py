@@ -42,6 +42,30 @@ def average_word_length(text):
     return summary_length/word_count
 
 
+def palindrom(alphabet, length):
+    list_of_palindroms = []
+    list_of_symbols = alphabet.split()
+    for i in range(length):
+        list_of_palindroms.append([])
+        if i == 0 or i == 1:
+            for j in range(len(list_of_symbols)):
+                list_of_palindroms[i].append(list_of_symbols[j])
+        else:
+            for j in list_of_palindroms[i-2]:
+                for k in list_of_palindroms[0]:
+                    list_of_palindroms[i].append(j+k)
+    for i in range(length):
+        for j in range(len(list_of_palindroms[i])):
+            if i%2 == 0:
+                help_str = list_of_palindroms[i][j][:-1]
+                reverse_str = help_str[::-1]
+                list_of_palindroms[i][j] += reverse_str
+            else:
+                reverse_str = list_of_palindroms[i][j][::-1]
+                list_of_palindroms[i][j] += reverse_str
+    return  list_of_palindroms
+
 
 if __name__ == '__main__':
     print(average_word_length('0rrrrrrrrrrrrrrrrrryyuyroooo oo00000000000000 0 0 000000000000000000000000000ooo     '))
+    print(palindrom('a b c', 5))
