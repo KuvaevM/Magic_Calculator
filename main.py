@@ -15,23 +15,38 @@ class Calculator:
 
     def __add__(self, other):
         value = other.value if isinstance(other, Calculator) else other
-        return Calculator(self.value + value, self.atributes_number)
+        new_calculator = Calculator(self.value + value, self.atributes_number)
+        for key in self.storage:
+            new_calculator.__setattr__(key, self.storage[key])
+        return new_calculator
 
     def __sub__(self, other):
         value = other.value if isinstance(other, Calculator) else other
-        return Calculator(self.value - value, self.atributes_number)
+        new_calculator = Calculator(self.value - value, self.atributes_number)
+        for key in self.storage:
+            new_calculator.__setattr__(key, self.storage[key])
+        return new_calculator
 
     def __mul__(self, other):
         value = other.value if isinstance(other, Calculator, ) else other
-        return Calculator(self.value * value, self.atributes_number)
+        new_calculator = Calculator(self.value * value, self.atributes_number)
+        for key in self.storage:
+            new_calculator.__setattr__(key, self.storage[key])
+        return new_calculator
 
     def __truediv__(self, other):
         value = other.value if isinstance(other, Calculator) else other
-        return Calculator(self.value / value, self.atributes_number)
+        new_calculator = Calculator(self.value / value, self.atributes_number)
+        for key in self.storage:
+            new_calculator.__setattr__(key, self.storage[key])
+        return new_calculator
 
     def __pow__(self, other):
         value = other.value if isinstance(other, Calculator) else other
-        return Calculator(self.value ** value, self.atributes_number)
+        new_calculator = Calculator(self.value ** value, self.atributes_number)
+        for key in self.storage:
+            new_calculator.__setattr__(key, self.storage[key])
+        return new_calculator
 
     def __setattr__(self, key, value):
         if key == 'atributes_number':
